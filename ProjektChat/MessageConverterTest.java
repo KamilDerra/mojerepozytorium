@@ -37,7 +37,6 @@ public class MessageConverterTest {
 		UdpPacket ne3 = messageConverter.serialize(textMessage);
 		BaseMessage ne33 = messageConverter.deserialize(ne3);
 		assertEquals(textMessage, ne33);
-
 	}
 
 	@Test
@@ -48,10 +47,4 @@ public class MessageConverterTest {
 		BaseMessage ne44 = messageConverter.deserialize(ne4);
 		assertEquals(messageConfirmation, ne44);
 	}
-
-
-
-
-
-
-}
+        }

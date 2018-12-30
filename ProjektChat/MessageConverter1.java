@@ -13,33 +13,28 @@ import java.nio.ByteBuffer;
 
 
 public class MessageConverter {
-
-		  
-	  private ObjectMapper objectMapper;
-
+  
+         private ObjectMapper objectMapper;
 	
-	 (Message converter class constructor):
 
-	  public MessageConverter() {
-		objectMapper = new ObjectMapper();
-	  }
+         (Message converter class constructor):
 
+         public MessageConverter() {
+	 objectMapper = new ObjectMapper();
+	 }
 
 
 
 	// SERIALIZACJA:
 
 
-	public UdpPacket serialize(BaseMessage message)
-	{
+	public UdpPacket serialize(BaseMessage message){
 
 		UdpPacket result = new UdpPacket();
 
-
 		try {
 			
-			(Korzystając z klasy ObjectMapper przekonwertuj wiadomość do postaci tekstowej zapisanej w formacie JSON):
-			 
+			(Korzystając z klasy ObjectMapper przekonwertuj wiadomość do postaci tekstowej zapisanej w formacie JSON):	 
 
 			ObjectMapper objectMapper = null;
 			try {
@@ -51,11 +46,9 @@ public class MessageConverter {
 			}
 
 
-
 			(Przekonwertuj wiadomość do String za pomocą ObjectMapper):
 
 			String messageAsString = objectMapper.writeValueAsString(message);
-
 
 
 		        (Sprawdź typ wiadomości i ustaw type w UdpPacket):
@@ -65,12 +58,10 @@ public class MessageConverter {
 			result.setType(msgType);
 
 
-
 			(Pobierz długość tekstu z pierwszego kroku i ustaw pole length w UdpPacket):
 
 			int messageAsStringLength = messageAsString.length();
 			result.setLength(messageAsStringLength);
-
 
 
 			(Przekonwertuj tekst do tablicy byte[] i ustaw pole value w UdpPacket):
@@ -84,31 +75,25 @@ public class MessageConverter {
 
 
 
-
-
-
 	// DESERIALIZACJA:
 
 
 	public BaseMessage deserialize(UdpPacket data) {
 
-               BaseMessage result1 = null;
-
+                 BaseMessage result1 = null;
+ 
 		
-
-		(Przekonwertuj value z klasy UdpPacket do String):
+ 		(Przekonwertuj value z klasy UdpPacket do String):
         
-                String valueFromByteToString = new String(data.getValue());
+                 String valueFromByteToString = new String(data.getValue());
 
 
-		
-		(Pobierz typ wiadomości "type" z UdpPacket):
+  		(Pobierz typ wiadomości "type" z UdpPacket):
         
-                MessageType type = data.getType();
+                 MessageType type = data.getType();
 
 
-
-		(Przekonwertuj String z pierwszego kroku do wiadomości korzystając z ObjectMapper.
+	       	(Przekonwertuj String z pierwszego kroku do wiadomości korzystając z ObjectMapper.
 		   Wykorzystaj pobrany typ z poprzedniego kroku do wyboru odpowiedniej klasy):
 
 
@@ -117,39 +102,30 @@ public class MessageConverter {
                       ObjectMapper objectMapper = new ObjectMapper();
                       switch (data.getType()) {
 
-
                       case ingoing:
 
                       result1 = objectMapper.readValue(valueFromByteToString, Ingoing.class);
-
                       break;
-
 
                       case outgoing:
 
                       result1 = objectMapper.readValue(valueFromByteToString, Outgoing.class);
-
                       break;
-
 
                       case message:
 
                       result1 = objectMapper.readValue(valueFromByteToString, TextMessage.class);
-
                       break;
-
 
                       case confirmation:
 
                       result1 = objectMapper.readValue(valueFromByteToString, MessageConfirmation.class);
-
                       break;
                      }
 
-
                      } catch (IOException e) {
-                     e.printStackTrace();
-        }
+                       e.printStackTrace();
+                     }
 
         return result1;
         }
