@@ -11,8 +11,8 @@ public class SdkjavaController {
 
         //  Endpoint testowy:      
 
-	@RequestMapping(value ="/helloworld", method = RequestMethod.GET)
-	public String sayHelloWorld() {
+	@RequestMapping(value ="/sdkjava", method = RequestMethod.GET)
+	public String writeSDKJava() {
 		return "SDK Java for Paidwork";
 		
 	}
