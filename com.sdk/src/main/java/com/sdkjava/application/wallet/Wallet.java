@@ -19,8 +19,8 @@ import lombok.Setter;
 
 @Entity  
 @Table(name = "wallets")
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Wallet {
 
 	@Id

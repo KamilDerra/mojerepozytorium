@@ -17,8 +17,8 @@ import lombok.Setter;
 
 @Entity // class as an entity in a database
 @Table(name = "tags")
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Tag {
 
 	@Id
