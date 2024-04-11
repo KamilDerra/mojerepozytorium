@@ -1,5 +1,11 @@
 package com.sdkjava.application.wallet;
 
+/* Pakiet Wallet:
+
+   - definiuje model danych używany w aplikacji,  
+
+*/
+
 import java.time.LocalDateTime;
 import java.util.List;
 

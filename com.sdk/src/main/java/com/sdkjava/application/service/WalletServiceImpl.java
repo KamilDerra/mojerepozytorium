@@ -1,5 +1,14 @@
 package com.sdkjava.application.service;
 
+/*  Pakiet Service:
+  
+     - zawiera klasy implementujące logikę biznesową aplikacji,
+     - serwisy mogą wykorzystywać modele i repozytoria do wykonywania złożonych operacji. 
+ 
+ */
+
+
+
 import java.util.List;
 import java.util.Optional;
 
